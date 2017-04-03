@@ -1,0 +1,9 @@
+  #buttons {
+        position: absolute;
+        left: 10px;
+        top: 0px;
+    }
+    button {
+        margin-top: 10px;
+        display: block;
+    }
