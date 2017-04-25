@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GPIO Test mit node.js</title>
+		<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+	</head>
+	
+	<body>
+		<h1>GPIO Test mit node.js</h1>
+		<video src="test.mjpeg" controls>
+			Dieser Browser unterstützt kein Video Element :(
+		</video>
+		<form action="http://raspberrypi:8000" method="POST" id='rgbForm'>
+			R: <input type='range' name='red' min=1 max=20 value=1 /><br />
+			G: <input type='range' name='green'  min=1 max=20 value=1 /><br />
+			B: <input type='range' name='blue'  min=1 max=20 value=1 /><br />
+			<button type='button' id="send">Senden</button>
+		</form>
+		
+		<script>
+			$('#send').click(function() {
+				$.ajax({
+					method: "POST",
+					url: "http://raspberrypi:8000",
+					data: $('#rgbForm').serialize()
+				});
+			});
+		</script>
+	</body>
+</html>
