@@ -1,31 +1,19 @@
 var http = require('http');
 var fs = require('fs');
 
-var jpegExtractor = require('jpeg-extractor');
-var fileOnWrite = require('file-on-write');
-const exec = require('child_process').execSync;
+var exec = require('child_process').execSync;
+var fork = require('child_process').fork;
 
 require('./ext.js')();
 
-// test regular file
-//var mjpeg = "http://raspberrypi:8000/stream";
+var child = fork('streamer.js');
 
-//var count = 0;
-//var je = jpegExtractor().on('image', function (image) {
-//});
-/*
-var fow = new fileOnWrite({
-	filename: function() {
-		return "testImage";
-	},
-	path: "./",
-	ext: ".jpg"
-});*/
+var buffer = "";
 
 var server = http.createServer( function( request,  response ){
 	
 	// Analyse Request
-	console.log( ">" + request.url);
+	//console.log( ">" + request.url);
 	
 	// Base URL requested
 	if ( request.url == "/" ) {
@@ -50,7 +38,7 @@ var server = http.createServer( function( request,  response ){
 
 		} else {
 			// Display standard page
-			var html = fs.readFileSync('stream.html');
+			var html = fs.readFileSync('main.html');
 			response.writeHead(200, {"Content-Type": "text/html"});
 			response.end(html);
 		}
@@ -61,6 +49,25 @@ var server = http.createServer( function( request,  response ){
 		
 		sendPreview(response);
 
+	} else if ( request.url.split("/")[1] == "start" ) {
+		
+		console.log("-> /start - starting stream");
+		
+		startStream(response);
+
+	} else if ( request.url.split("/")[1] == "stop" ) {
+		
+		console.log("-> /stop - stopping stream");
+		
+		stopStream(response);
+
+	} else if ( request.url.split("/")[1].split("?")[0] == "buffer" ) {
+		
+		//console.log("-> /test - testing buffer");
+		
+		response.writeHead(200, {"Content-Type": "image/jpeg"});
+		response.end(buffer);
+
 	} else if ( request.url.split("/")[1] == "settings" ) {
 		
 		console.log("-> /settings - collecting camera data...");
@@ -70,6 +77,7 @@ var server = http.createServer( function( request,  response ){
 	} else  {
 		
 		var path = request.url.slice(1);
+		path = path.split("?")[0];
 		var ext = path.split(".");
 		ext = ext[ext.length-1];
 		
@@ -103,46 +111,59 @@ console.log("Server running at http://127.0.0.1:8000/");
 
 function changeSettings( body, response ) {
 	
-	var para = body.split("&")[0].split("=")[0];
+	child.send("stop");
+	setTimeout( function() {
+		var para = body.split("&")[0].split("=")[0];
 	
-	if ( para == "capture" ) {
-		var val = body.split("&")[0].split("=")[1];
-		takePicture(val, response);
-	} else {
-	
-		var val = body.split("&")[1].split("=")[1];
+		if ( para == "capture" ) {
+			var val = body.split("&")[0].split("=")[1];
+			takePicture(val, response);
+		} else {
+			para = body.split("&")[0].split("=")[1];
+			var val = body.split("&")[1].split("=")[1];
 		
-		console.log(">> change Settings: " + para + "=" + val);
+			console.log(">> change Settings: " + para + "=" + val);
 	
-		var ret = '';
-		try {
-			ret = exec('gphoto2 --set-config ' + para + '=' + val);
-			ret = (ret == "" ? "ok" : ret);
-			console.log("<< " + ret);
-		} catch (err) {
-			console.log("-!- Error: ", err);
-			ret = "error";
+			var ret = '';
+			try {
+				ret = exec('gphoto2 --set-config ' + para + '=' + val);
+				ret = (ret == "" ? "ok" : ret);
+				console.log("<< " + ret);
+			} catch (err) {
+				console.log("-!- Error: ", err);
+				ret = "error";
+			}
+	
+	
+			response.writeHead(200, {"Content-Type": "text/json"});
+			response.end('{"status":"' + ret + '"}');
+		
+			child.send("start");
 		}
-	
-	
-		response.writeHead(200, {"Content-Type": "text/json"});
-		response.end('{"status":"' + ret + '"}');
-	}
+	}, 1000 );
 }
 
 function checkSettings(response) {
 
+	// f-number || aperture
 	var settings = ["iso","aperture","shutterspeed"];
 	var returns = new Array(3);
 	
 	var camSettings = {};
+	
+	// check for Canon or Nikon camera
+	try {
+		exec('gphoto2 --get-config aperture');
+	} catch (err) {
+		settings[1] = "f-number";
+	}
+	
 	
 	for ( var i = 0; i < settings.length; i++) {
 		try {
 			
 			camSettings[settings[i]] = {};
 			
-			console.log("exec: " + 'gphoto2 --get-config ' + settings[i]);
 			returns[i] = exec('gphoto2 --get-config ' + settings[i]);
 			
 			/* Convert Output */
@@ -168,7 +189,6 @@ function checkSettings(response) {
 	}
 	
 	console.log("done");
-	//console.log(camSettings);
 	
 	response.writeHead(200, {"Content-Type": "text/json"});
 	response.end('{"status":"ok","settings":' + JSON.stringify(camSettings) + '}');
@@ -176,15 +196,21 @@ function checkSettings(response) {
 
 function sendPreview( response ) {
 	console.log("<< new preview" );
+	exec('echo "y" | gphoto2 --capture-preview');
 	response.writeHead(200, {"Content-Type": "text/json"});
-	response.end('{"status":"ok"}');
+	response.end('{"status":"ok","image":"capture_preview.jpg"}');
 }
 
 function takePicture(time, response ) {
 	time = parseInt(time);
 	console.log("<< new picture in " + time + "s" );
 	
+	setTimeout(function () {
+		child.send('stop');
+	}, (time > 1 ? time - 1 : 0 ) * 1000 );
+	
 	setTimeout(function() {
+		
 		try {
 			ret = exec('echo "y" | gphoto2 --capture-image-and-download --filename=capture.jpg');
 			console.log("<< " + ret.toString());
@@ -198,4 +224,24 @@ function takePicture(time, response ) {
 		}
 	}, time * 1000);
 }
+
+function startStream (response) {
+
+	child.send('start'); 
+
+	response.writeHead(200, {"Content-Type": "text/json"});
+	response.end('{"status":"ok"}');
+}
+
+function stopStream (response) {
+
+	child.send('stop');
+	
+	response.writeHead(200, {"Content-Type": "text/json"});
+	response.end('{"status":"ok"}');
+}
+
+child.on('message', (m) => {
+	buffer = new Buffer(m);
+});
 

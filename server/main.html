@@ -22,6 +22,9 @@
 			<button type='button' id="shoot">Bild machen</button>
 		</form>
 		
+		<img id="preview" src="" style="width: 30%;" /><br />
+		<button type="button" id="pre">Neue Vorschau</button>
+		
 		<script>
 			$('#send').click(function() {
 				$.ajax({
@@ -32,6 +35,23 @@
 					alert(msg.status);
 				});
 			});
+			/*
+			$('#pre').click(function() {
+				$.ajax({
+					method: "GET",
+					url: "http://raspberrypi:8000/pre"
+				}).done( function (msg) {
+					var i = Math.floor(Math.random() * 20000);
+					console.log(i);
+					$('#preview').attr("src", msg.image + "?" + i);
+				});
+			});*/
+			$('#pre').click(function() {
+				$.ajax({
+					method: "GET",
+					url: "http://raspberrypi:8000/start"
+				});
+			});
 			
 			$('#shoot').click(function() {
 				$.ajax({
@@ -39,7 +59,7 @@
 					url: "http://raspberrypi:8000",
 					data: $('#shootForm').serialize()
 				}).done( function (msg) {
-					location.href = "view.html";
+					location.href = "http://raspberrypi:8000/photobooth/photobooth/index.html";
 				});
 			});
 			
@@ -66,6 +86,12 @@
 						}
 					});
 				});
+				
+				var counter = 0;
+				setInterval(function () {
+					$('#preview').attr("src", "http://raspberrypi:8000/buffer" + "?" + counter);
+					counter = counter + 1;
+				}, 100);
 			});
 	</script>	
 	

@@ -398,6 +398,9 @@ module.exports = function() {
 				case "wrl":
 					ext = "x-world/x-vrml";
 					break;
+				case "svg":
+					ext = "image/svg+xml";
+					break;
 			}
 			return ext;
 	}; 
