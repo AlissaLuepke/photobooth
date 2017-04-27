@@ -1,70 +1,98 @@
-*, *:before, *:after {
-  box-sizing: border-box;
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
-  padding: 20px 20px;
+    font-family: sans-serif;
+    padding: 20px 20px;
+/*    background-image: url('../img/pink%20dust.png');*/
+    
 }
+
+.custom_border{
+    border: 3px solid black;
+   
+}
+
+
 @media (min-width: 600px) {
-  body {
+    body {
+        padding: 20px;
+    }
+}
+
+.filters {
+    background-color: #C8DCDE;
+    border: 1px solid rgba(50, 89, 92, 0.14);
     padding: 20px;
-  }
+     
+    -webkit-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
+    -moz-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
+    box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.28);
 }
 
 .range-slider {
-  margin: 20px 0 0 0%;
+    margin: 20px 0 0 0%;
 }
 
 .range-slider {
-  width: 100%;
+    width: 100%;
 }
 
 .range-slider__range {
-  -webkit-appearance: none;
-  width: calc(100% - (73px));
-  height: 10px;
-  border-radius: 5px;
-  background: #d7dcdf;
-  outline: none;
-  padding: 0;
-  margin: 0;
+    -webkit-appearance: none;
+    width: calc(100% - (73px));
+    height: 10px;
+    border-radius: 5px;
+    background: #ffffff;
+    outline: none;
+    padding: 0;
+    margin: 0;
 }
+
 .range-slider__range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-          appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #482c50;
-  cursor: pointer;
-  -webkit-transition: background .15s ease-in-out;
-  transition: background .15s ease-in-out;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #407477;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
 }
+
 .range-slider__range::-webkit-slider-thumb:hover {
-  background: #ff94c9;
+    background: #ffbc26;
 }
+
 .range-slider__range:active::-webkit-slider-thumb {
-  background: #ff94c9;
+    background: #ffbc26;
 }
+
 .range-slider__range::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border: 0;
-  border-radius: 50%;
-  background: #482c50;
-  cursor: pointer;
-  -webkit-transition: background .15s ease-in-out;
-  transition: background .15s ease-in-out;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: #407477;
+    cursor: pointer;
+    -webkit-transition: background .15s ease-in-out;
+    transition: background .15s ease-in-out;
 }
+
 .range-slider__range::-moz-range-thumb:hover {
-  background: #ff94c9;
+    background: #ff94c9;
 }
+
 .range-slider__range:active::-moz-range-thumb {
-  background: #ff94c9;
+    background: #ff94c9;
 }
 
 .range-slider__value {
+<<<<<<< Updated upstream
   display: inline-block;
   position: relative;
   width: 60px;
@@ -79,37 +107,51 @@ body {
 >>>>>>> 8900f61038f41f1f6f3b6d39d94bd6cf5953294f
   padding: 5px 10px;
   margin-left: 8px;
+=======
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: #407477;
+    padding: 5px 10px;
+    margin-left: 8px;
+>>>>>>> Stashed changes
 }
+
 .range-slider__value:after {
-  position: absolute;
-  top: 8px;
-  left: -7px;
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-right: 7px solid #482c50;
-  border-bottom: 7px solid transparent;
-  content: '';
+    position: absolute;
+    top: 8px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #407477;
+    border-bottom: 7px solid transparent;
+    content: '';
 }
 
 ::-moz-range-track {
-  background: #d7dcdf;
-  border: 0;
+    background: #d7dcdf;
+    border: 0;
 }
 
 input::-moz-focus-inner,
 input::-moz-focus-outer {
-  border: 0;
+    border: 0;
 }
 
-.custombutton{
-    background-color: #482c50;
-    color:#fff;
+.custombutton {
+    background-color: #407477;
+    color: #fff;
     border-radius: 3px;
     padding: 10px 25px;
     margin: 10px;
 }
-#rectangle {
+
+#rectangle, #flower, #crown {
     width: 100px;
     height: 100px;
 }

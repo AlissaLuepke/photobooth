@@ -55,11 +55,41 @@ fabric.Image.fromURL('../../../capture.jpg', function (oImg) {
 
     });
 });
-
+$(document).ready(function(){
+  $('.slider1').bxSlider({
+    slideWidth: 600, 
+    minSlides: 6,
+    maxSlides: 8,
+    slideMargin: 10,
+      pager: false
+  });
+});
 
 $("#rectangle").click(function () {
 
     fabric.loadSVGFromURL('img/beard.svg', function (objects, options) {
+
+        var obj = fabric.util.groupSVGElements(objects, options);
+        canvas.add(obj).renderAll();
+
+
+    });
+
+});
+$("#flower").click(function () {
+
+    fabric.loadSVGFromURL('img/augenklappe.svg', function (objects, options) {
+
+        var obj = fabric.util.groupSVGElements(objects, options);
+        canvas.add(obj).renderAll();
+
+
+    });
+
+});
+$("#crown").click(function () {
+
+    fabric.loadSVGFromURL('img/crown.svg', function (objects, options) {
 
         var obj = fabric.util.groupSVGElements(objects, options);
         canvas.add(obj).renderAll();

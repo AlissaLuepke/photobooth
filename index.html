@@ -7,58 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/pure-min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jquery.bxslider.css"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Photobooth</title>
 </head>
 
 <body>
-   <h1>Photobooth</h1>
+    <!--    <h1>Photobooth</h1>-->
     <div class="pure-g">
-        <div class="pure-u-1-5">
-            <img id="rectangle" alt="self-Logo" src="img/beard.svg">
-        </div>
-        <div class="pure-u-3-5">
+        <div class="pure-u-4-5">
             <canvas id="canvas" width="600" height="400"></canvas>
-
             <button id="target" class="pure-button custombutton">Delete</button>
             <button id="save" class="pure-button custombutton">Save</button>
         </div>
-
-
-
         <div class="pure-u-1-5">
             <div class="filters">
-
                 <div class="range-slider">
-                   <p>Contrast</p>
-                    <input class="range-slider__range" type="range" id="contrast" min="-255" max="255" data-filter="0"> <span class="range-slider__value">0</span>
+                    <p>Contrast</p>
+                    <input class="range-slider__range" type="range" id="contrast" min="-255" max="255" data-filter="0" list="volsettings"> <span class="range-slider__value">0</span>
+                    <datalist id="volsettings">
+                        <option>0</option>
+                    </datalist>
                 </div>
                 <div class="range-slider">
-                   <p>Pixelate</p>
-                    <input class="range-slider__range" type="range" id="blocksize" min="1" max="16" data-filter="1" value="0"> <span class="range-slider__value">0</span>
+                    <p>Pixelate</p>
+                    <input class="range-slider__range" type="range" id="blocksize" min="1" max="16" data-filter="1" value="0"> <span class="range-slider__value">0</span> </div>
+                <div class="range-slider">
+                    <p>Saturation</p>
+                    <input class="range-slider__range" type="range" id="saturate" min="-100" max="100" data-filter="2" list="volsettings"> <span class="range-slider__value"> 0</span>
+                    <datalist id="volsettings">
+                        <option>0</option>
+                    </datalist>
                 </div>
                 <div class="range-slider">
-                   <p>Saturation</p>
-                    <input class="range-slider__range" type="range" id="saturate" min="-100" max="100" data-filter="2"> <span class="range-slider__value"> 0</span>
+                    <p>Brightness</p>
+                    <input class="range-slider__range" type="range" id="brightness" min="-255" max="255" data-filter="3" list="volsettings"> <span class="range-slider__value"> 0</span>
+                    <datalist id="volsettings">
+                        <option>0</option>
+                    </datalist>
                 </div>
-                <div class="range-slider">
-                   <p>Brightness</p>
-                    <input class="range-slider__range" type="range" id="brightness" min="-255" max="255" data-filter="3"> <span class="range-slider__value"> 0</span>
-                </div>
-
-
-
-
-
             </div>
-
         </div>
-
     </div>
-
-
+    <div class="pure-g">
+<div class="pure-u-5-5">
+            <div class="slider1">
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="flower" alt="self-Logo" src="img/augenklappe.svg"></div>
+                <div class="slide"><img id="crown" alt="self-Logo" src="img/crown.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+           
+    </div>
+        </div>
+    </div>
     <script src="fabric/dist/fabric.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.bxslider.js"></script>
     <script src="js/script.js"></script>
 </body>
 
