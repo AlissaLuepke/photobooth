@@ -7,15 +7,12 @@
 body {
     font-family: sans-serif;
     padding: 20px 20px;
-/*    background-image: url('../img/pink%20dust.png');*/
-    
+    /*    background-image: url('../img/pink%20dust.png');*/
 }
 
-.custom_border{
+.custom_border {
     border: 3px solid black;
-   
 }
-
 
 @media (min-width: 600px) {
     body {
@@ -27,7 +24,6 @@ body {
     background-color: #C8DCDE;
     border: 1px solid rgba(50, 89, 92, 0.14);
     padding: 20px;
-     
     -webkit-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
     -moz-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
     box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.28);
@@ -92,22 +88,17 @@ body {
 }
 
 .range-slider__value {
-<<<<<<< Updated upstream
-  display: inline-block;
-  position: relative;
-  width: 60px;
-  color: #fff;
-  line-height: 20px;
-  text-align: center;
-  border-radius: 3px;
-<<<<<<< HEAD
-  background: black;
-=======
-  background: #502c2c;
->>>>>>> 8900f61038f41f1f6f3b6d39d94bd6cf5953294f
-  padding: 5px 10px;
-  margin-left: 8px;
-=======
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: black;
+    background: #502c2c;
+    padding: 5px 10px;
+    margin-left: 8px;
     display: inline-block;
     position: relative;
     width: 60px;
@@ -118,7 +109,6 @@ body {
     background: #407477;
     padding: 5px 10px;
     margin-left: 8px;
->>>>>>> Stashed changes
 }
 
 .range-slider__value:after {
@@ -151,7 +141,9 @@ input::-moz-focus-outer {
     margin: 10px;
 }
 
-#rectangle, #flower, #crown {
+#rectangle,
+#flower,
+#crown {
     width: 100px;
     height: 100px;
 }

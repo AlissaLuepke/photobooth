@@ -16,8 +16,8 @@ var canvas = new fabric.Canvas('canvas', {
 });
 
 
-//fabric.Image.fromURL('img/1036476_8332460.jpg', function (oImg) {
-fabric.Image.fromURL('../../../capture.jpg', function (oImg) {
+fabric.Image.fromURL('img/1036476_8332460.jpg', function (oImg) {
+//fabric.Image.fromURL('../../../capture.jpg', function (oImg) {
     wImg = oImg.getOriginalSize().width;
     wCan = canvas.width;
     oImg.scale(wCan / wImg);
