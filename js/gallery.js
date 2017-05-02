@@ -5,10 +5,10 @@ $.ajax({
 }).done(function(message){
   for(var x in message){
       $.ajax({
-          url: "/photos/"+x,
+          url: "/photos/"+message[x],
           method: "GET"
       }).done(function(message){
-          $("#gallery").append("<img src='"+message+"'>");
+          $("#gallery").append("<img src='"+decodeURIComponent(message)+"'>");
       })
       
   }
