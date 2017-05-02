@@ -108,9 +108,12 @@ $("#target").click(function () {
 $("#save").click(function () {
     
     $.ajax({
-        url: canvas.toDataURL('png')
+        url: "/save",
+        method: "POST",
+        data: canvas.toDataURL('png')
     }).done(function () {
             alert();
+            
         });
 
 
