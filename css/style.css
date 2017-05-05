@@ -147,3 +147,37 @@ input::-moz-focus-outer {
     width: 100px;
     height: 100px;
 }
+
+#preview-container {
+	height: 25em;
+	text-align: center;
+}
+
+#preview {
+	width: 95%;
+}
+
+button {
+	margin: 0.5em 1em !important;
+	padding: 0.5em 1em !important;
+	min-width: 10em;
+}
+
+select, input {
+	min-width: 80%;
+}
+
+#capture {
+	text-align: right;
+}
+
+#gallery {
+	background: lightgray;
+}
+
+#gallery img {
+	margin: 5px 5px 20px 5px;
+	background: white;
+	width: 30%;
+	float: left;
+}

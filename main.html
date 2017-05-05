@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>node.js Stream test</title>
+		<title>Photobooth</title>
 		<script src="js/jquery-3.2.1.min.js"></script>
   		<link rel="stylesheet" href="css/style.css"/>
+  		<link rel="stylesheet" href="css/pure-min.css"/>
 	</head>
 	
 	<body>
-		<h1>node.js photobooth test</h1>
+		<div class="pure-g">
+			<div class="pure-u-1-6"></div>
+			<div class="pure-u-2-3">
+				<div id='preview-container'>
+					<img id="preview" alt="Klicke auf 'Neue Vorschau um zu starten'" src="" style="width: 30%;" />
+				</div>
+			</div>
+			<div class="pure-u-1-6">
+				<button class='pure-button' type='button' id="shoot">Bild machen</button>
+				<button class='pure-button' type="button" id="pre">Neue Vorschau</button>
+			</div>
+		</div>
+	
+		<div class="pure-g">
+			<div class="pure-u-1-6"></div>
+			<div class="pure-u-2-3 settings">
+				<div class="pure-g">
+					<div class="pure-u-1-2">
+						<form class="pure-form pure-form-stacked" action="http://raspberrypi:8000" method="POST" id='rgbForm'>
+							<select id="parameter" name='parameter' >
+							</select><br />
+							<select id="value" name='value' >
+							</select><br />
+							<button class='pure-button' type='button' id="send">Senden</button>
+						</form>
+					</div>
+					<div class="pure-u-1-2">
+						<form class="pure-form pure-form-stacked" action="http://raspberrypi:8000" method="POST" id='shootForm'>
+							<input id="capture" name='capture' type="number" value=1 >
+							<label for="capture">Timer</label>
+							<a class='pure-button' href="gallery.html">Zur Gallerie</a>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="pure-u-1-6"></div>
+		</div>
 		
-		<form action="http://raspberrypi:8000" method="POST" id='rgbForm'>
-			P: <select id="parameter" name='parameter' >
-			</select><br />
-			V: <select id="value" name='value' >
-			</select><br />
-			<button type='button' id="send">Senden</button>
-		</form>
 		
-		<form action="http://raspberrypi:8000" method="POST" id='shootForm'>
-			Timer: <input id="capture" name='capture' type="number" value=1 ><br />
-			<button type='button' id="shoot">Bild machen</button>
-		</form>
-		
-		<img id="preview" src="" style="width: 30%;" /><br />
-		<button type="button" id="pre">Neue Vorschau</button>
 		
 		<script>
 			$('#send').click(function() {
