@@ -6,7 +6,7 @@ class FilterType {
     }
 
 }
-
+// neues Canvas Element wurde erstellt 
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: 'rgb(239, 239, 239)',
     selectionColor: 'black',
@@ -15,6 +15,31 @@ var canvas = new fabric.Canvas('canvas', {
     selectionLineWidth: 2
 });
 
+$(window).resize(function () {
+
+    var imagewidth = $('#preview-container').width();
+    $('#preview-container').height(imagewidth / 1.25);
+    $('#preview-container').css('min-height', imagewidth / 1.25);
+
+
+    var canvas_size = $('#canvas_image').width();
+
+//    $('#canvas_image').height(imagewidth - 50);
+//    $('canvas_image').css('min-height', (imagewidth - 50) / 1.25);
+    
+    canvas.setWidth( imagewidth - 50);
+    canvas.setHeight( (imagewidth - 50) * 0.66);
+    canvas.calcOffset();
+    canvas.renderAll();
+
+
+});
+
+canvas.width = 900;
+canvas.height = 900;
+// canvas.height = (imagewidth) * 0.66;
+canvas.calcOffset();
+// Aufgenommene Bilder der Kamera wird dynamisch zum Canvas hinzugefügt
 
 //fabric.Image.fromURL('img/1036476_8332460.jpg', function (oImg) {
 fabric.Image.fromURL('capture.jpg', function (oImg) {
@@ -23,7 +48,7 @@ fabric.Image.fromURL('capture.jpg', function (oImg) {
     oImg.scale(wCan / wImg);
     oImg.selectable = false;
     canvas.add(oImg);
-
+    // Anwendung des Filter auf das Bild
     $(function () {
         $('.filters').on("change", "input", function () {
 
@@ -55,17 +80,28 @@ fabric.Image.fromURL('capture.jpg', function (oImg) {
 
     });
 });
-$(document).ready(function(){
-  $('.slider1').bxSlider({
-    slideWidth: 600, 
-    minSlides: 6,
-    maxSlides: 8,
-    slideMargin: 10,
-      pager: false
-  });
+
+// Hinzufügen des bxSliders
+$(document).ready(function () {
+    $('.sliderSticker').bxSlider({
+        slideWidth: 600,
+        minSlides: 6,
+        maxSlides: 8,
+        slideMargin: 10,
+        pager: false
+    });
 });
 
-$("#rectangle").click(function () {
+
+
+
+
+
+
+/// STICKER
+
+
+$("#beard").click(function () {
 
     fabric.loadSVGFromURL('img/beard.svg', function (objects, options) {
 
@@ -105,8 +141,11 @@ $("#target").click(function () {
     canvas.remove(selected);
 });
 
+
+//Speichern des neuen Bildes
+
 $("#save").click(function () {
-    
+
     $.ajax({
         url: "/",
         method: "POST",
@@ -116,29 +155,31 @@ $("#save").click(function () {
         	font: 0
         }
     }).done(function (msg) {
-            alert("Image saved");
-        });
+        alert("Image saved");
+    });
 });
 
-  var rangeSlider = function(){
+
+/// Filter Slider (Helligkeit, Kontrast etc.)
+var rangeSlider = function () {
     var slider = $('.range-slider'),
         range = $('.range-slider__range'),
         value = $('.range-slider__value');
 
-    slider.each(function(){
+    slider.each(function () {
 
-      value.each(function(){
-        var value = $(this).prev().attr('value');
-        $(this).html(value);
-      });
+        value.each(function () {
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+        });
 
-      range.on('input', function(){
-        $(this).next(value).html(this.value);
-      });
+        range.on('input', function () {
+            $(this).next(value).html(this.value);
+        });
     });
-  };
+};
 
-  rangeSlider();
+rangeSlider();
 
 var filters = [
 
@@ -157,3 +198,22 @@ var filters = [
 
 
 ];
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    wait();
+
+});
+
+function wait() {
+    console.log("Function Called");
+
+    var e = document.getElementById('flex-container');
+
+    e.preventDefault;
+
+    e.className = e.className + " waited";
+
+
+};

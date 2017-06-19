@@ -13,15 +13,21 @@
 </head>
 
 <body>
-    <!--    <h1>Photobooth</h1>-->
+    
     <div class="pure-g">
-        <div class="pure-u-4-5">
-            <canvas id="canvas" width="600" height="400"></canvas>
-            <button id="target" class="pure-button custombutton">Delete</button>
-            <button id="save" class="pure-button custombutton">Save</button>
-        </div>
-        <div class="pure-u-1-5">
-            <div class="filters">
+       
+       <div class="pure-u-2-3">
+           <div id='preview-container'>
+         <div id="canvas_image">
+           <canvas id="canvas" ></canvas>
+              </div>
+           </div>
+       </div>
+       
+       
+       
+       <div class="pure-u-1-3">
+          <div class="filters">
                 <div class="range-slider">
                     <p>Contrast</p>
                     <input class="range-slider__range" type="range" id="contrast" min="-255" max="255" data-filter="0" list="volsettings"> <span class="range-slider__value">0</span>
@@ -47,12 +53,32 @@
                     </datalist>
                 </div>
             </div>
+            </div>
+      
+    <div>
+       
+       
+       
+       
+        <!--<div class="pure-u-4-5">
+            <canvas id="canvas" width="600" height="400"></canvas>
+            <button id="target" class="pure-button custombutton">Delete</button>
+            <button id="save" class="pure-button custombutton">Save</button>
+        </div>-->
+        <div class="pure-u-1-5">
+         
         </div>
     </div>
+    
+    
+    
+    
+    
+    
     <div class="pure-g">
 <div class="pure-u-5-5">
-            <div class="slider1">
-                <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>
+            <div class="sliderSticker">
+                <div class="slide"><img id="beard" alt="self-Logo" src="img/beard.svg"></div>
                 <div class="slide"><img id="flower" alt="self-Logo" src="img/augenklappe.svg"></div>
                 <div class="slide"><img id="crown" alt="self-Logo" src="img/crown.svg"></div>
                 <div class="slide"><img id="rectangle" alt="self-Logo" src="img/beard.svg"></div>

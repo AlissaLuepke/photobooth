@@ -1,3 +1,5 @@
+
+// AJAX Request --> Holen der Bilder
 $.ajax({
     url: "/dir",
     method: "GET"
@@ -16,3 +18,4 @@ $.ajax({
     
     
 });
+
