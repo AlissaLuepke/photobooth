@@ -202,6 +202,10 @@ function changeSettings( body, response ) {
 				* save as txt with prefixed timestamp
 			*/
 			var val = body.split("&")[0].split("=")[1];
+			var text = body.split("&")[1].split("=")[1];
+			var font = body.split("&")[2].split("=")[1];
+			
+			var output = '{"img":"' + val + '","text":"' + text + '","font":"' + font + '"}';
 			
 			var date = new Date();
 			var sec = date.getSeconds();
@@ -218,7 +222,7 @@ function changeSettings( body, response ) {
 			
 			var file = date.getFullYear() + "_" + month + "_" + day + "_" + h + "_" + min + "_" + sec;
 			
-			fs.writeFile("photos/" + file + ".txt", val, function(err) {
+			fs.writeFile("photos/" + file + ".json", output, function(err) {
 			    if(err) {
 				console.log(err);
 				response.writeHead(200, {"Content-Type": "text/json"});

@@ -8,7 +8,8 @@ $.ajax({
           url: "/photos/"+message[x],
           method: "GET"
       }).done(function(message){
-          $("#gallery").append("<img src='"+decodeURIComponent(message)+"'>");
+          $("#gallery").append("<img src='"+decodeURIComponent(message.img)+"'>");
+          $("#gallery").append("<p>" + decodeURIComponent(message.text) + " ; FontID:" + message.font + "</p>");
       })
       
   }

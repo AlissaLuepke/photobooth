@@ -111,7 +111,9 @@ $("#save").click(function () {
         url: "/",
         method: "POST",
         data: {
-        	save: canvas.toDataURL('png')
+        	save: canvas.toDataURL('png'),
+        	text: "Test Message",
+        	font: 0
         }
     }).done(function (msg) {
             alert("Image saved");
