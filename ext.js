@@ -1,4 +1,20 @@
+/********************************************************
+
+	ext.js - node.js module
+	
+	Contains a single function getExtension() to 
+	look up MIME-Types based on file extension
+	
+********************************************************/
+
 module.exports = function() {
+	/***
+		String getExtension (String)
+		* accepts 	String	: extension
+		* returns		String	: MIME-Type
+		* A function that takes a file extension as String parameter
+		and returns the looked up MIME-Type for this extension	
+	***/
 	this.getExtension = function(ext) {
 		switch (ext) {
 				case "mjpeg":
