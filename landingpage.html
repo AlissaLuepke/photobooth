@@ -17,7 +17,7 @@
 <div class="bg"></div>
 <div class="flex-container" id = "flex-container">
 
-  <h1>Photobooth</h1>
+  <h1 id='titletext' style="letter-spacing: 50px">Photobooth</h1>
   <p class="lead"></p>
   <a href="main.html" class="cta">Start</a>
 </div>
@@ -27,6 +27,19 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/jquery.bxslider.js"></script>
     <script src="js/script.js"></script>
+    
+    <script>
+    	$(document).ready(function () {
+    		var dist = 50;
+    		var interval = setInterval(function () {
+    			$('#titletext').css("letter-spacing", dist + "px");
+    			dist -= 1;
+    			if (dist == 0) clearInterval(interval);
+    		}, 100);
+    		
+    	});
+    
+    </script>
 </body>
 
 </html>
