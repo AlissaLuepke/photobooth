@@ -23,26 +23,21 @@ $(window).resize(function () {
 
 
     var canvas_size = $('#canvas_image').width();
-
-//    $('#canvas_image').height(imagewidth - 50);
-//    $('canvas_image').css('min-height', (imagewidth - 50) / 1.25);
     
-    canvas.setWidth( imagewidth - 50);
-    canvas.setHeight( (imagewidth - 50) * 0.66);
-    canvas.calcOffset();
+    canvas.setWidth( imagewidth - 50 );
+    canvas.setHeight( (imagewidth - 50 ) * 0.66);
+    var ratio = canvas.width / canvas.getObjects()[0].width;
+    canvas.getObjects()[0].scaleX = ratio;
+    canvas.getObjects()[0].scaleY = ratio;
     canvas.renderAll();
 
 
 });
 
-canvas.width = 900;
-canvas.height = 900;
-// canvas.height = (imagewidth) * 0.66;
-canvas.calcOffset();
-// Aufgenommene Bilder der Kamera wird dynamisch zum Canvas hinzugefügt
+// Aufgenommenes Bild der Kamera wird dynamisch zum Canvas hinzugefügt
 
 //fabric.Image.fromURL('img/1036476_8332460.jpg', function (oImg) {
-fabric.Image.fromURL('capture.jpg', function (oImg) {
+var canvas_image = fabric.Image.fromURL('capture.jpg', function (oImg) {
     wImg = oImg.getOriginalSize().width;
     wCan = canvas.width;
     oImg.scale(wCan / wImg);
@@ -90,6 +85,8 @@ $(document).ready(function () {
         slideMargin: 10,
         pager: false
     });
+    
+    $(window).resize();
 });
 
 
@@ -146,13 +143,16 @@ $("#target").click(function () {
 
 $("#save").click(function () {
 
+	var theText = encodeURIComponent($('#text').val());
+	console.log(theText);
+
     $.ajax({
         url: "/",
         method: "POST",
         data: {
         	save: canvas.toDataURL('png'),
-        	text: "Test Message",
-        	font: 0
+        	text: theText,
+        	font: $('#font').val()
         }
     }).done(function (msg) {
         alert("Image saved");
@@ -199,6 +199,21 @@ var filters = [
 
 ];
 
+$('#text').keyup(function () {
+	$('#font option').html($(this).val());
+	$('#subtext').html($(this).val());
+	changeFont();
+});
+$('#font').change(function () {
+	changeFont();
+});
+
+function changeFont() {
+	$('#subtext').removeClass(function () { return $(this).attr("class"); });
+	$('#subtext').addClass("font_" + $('#font').val() );
+	$('#font').removeClass(function () { return $(this).attr("class"); });
+	$('#font').addClass("font_" + $('#font').val() );
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -211,9 +226,9 @@ function wait() {
 
     var e = document.getElementById('flex-container');
 
-    e.preventDefault;
+    //e.preventDefault();
 
-    e.className = e.className + " waited";
+    //e.className = e.className + " waited";
 
 
 };

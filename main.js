@@ -69,7 +69,7 @@ var server = http.createServer( function( request,  response ){
 
 		} else {
 			// Display standard page
-			var html = fs.readFileSync('main.html');
+			var html = fs.readFileSync('landingpage.html');
 			response.writeHead(200, {"Content-Type": "text/html"});
 			response.end(html);
 		}
