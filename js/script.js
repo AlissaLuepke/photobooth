@@ -98,9 +98,9 @@ $(document).ready(function () {
 /// STICKER
 
 
-$("#beard").click(function () {
+$("#herz").click(function () {
 
-    fabric.loadSVGFromURL('img/beard.svg', function (objects, options) {
+    fabric.loadSVGFromURL('img/svg_sticker/Herzal.svg', function (objects, options) {
 
         var obj = fabric.util.groupSVGElements(objects, options);
         canvas.add(obj).renderAll();
@@ -109,9 +109,9 @@ $("#beard").click(function () {
     });
 
 });
-$("#flower").click(function () {
+$("#Kullerauge").click(function () {
 
-    fabric.loadSVGFromURL('img/augenklappe.svg', function (objects, options) {
+    fabric.loadSVGFromURL('img/svg_sticker/Kullerauge.svg', function (objects, options) {
 
         var obj = fabric.util.groupSVGElements(objects, options);
         canvas.add(obj).renderAll();

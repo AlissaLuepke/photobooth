@@ -2,6 +2,11 @@
 ===================================*/
 /** RESET AND LAYOUT
 ===================================*/
+.slide{
+   padding: 10px;
+    margin-left: 10px;
+    width: auto !important;
+}
 .bx-wrapper {
   position: relative;
   margin-bottom: 60px;
@@ -31,8 +36,15 @@ ul.bxslider {
   -moz-box-shadow: 0 0 5px #ccc;
   -webkit-box-shadow: 0 0 5px #ccc;
   box-shadow: 0 0 5px #ccc;
-  border: 5px solid #fff;
-  background: #fff;
+     border: 1px solid #797979;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
+    -moz-box-shadow:2px 2px 5px 0px rgba(181, 181, 181, 1);
+    box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
+
+    -webkit-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
+    -moz-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
+    box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.28);
+  background: #C8DCDE;
 }
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
@@ -90,28 +102,28 @@ ul.bxslider {
 }
 /* DIRECTION CONTROLS (NEXT / PREV) */
 .bx-wrapper .bx-prev {
-  left: 10px;
-  background: url('../images/controls.png') no-repeat 0 -32px;
+
+  background: url('../images/handle_left.svg') no-repeat 0 -32px;
 }
 .bx-wrapper .bx-prev:hover,
 .bx-wrapper .bx-prev:focus {
   background-position: 0 0;
 }
 .bx-wrapper .bx-next {
-  right: 10px;
-  background: url('../images/controls.png') no-repeat -43px -32px;
+ right: 0px;
+  background: url('../images/handle_right.svg') no-repeat -43px -32px;
 }
 .bx-wrapper .bx-next:hover,
 .bx-wrapper .bx-next:focus {
-  background-position: -43px 0;
+ 
 }
 .bx-wrapper .bx-controls-direction a {
   position: absolute;
-  top: 50%;
-  margin-top: -16px;
+    top: 0px;
+    background-position: 0 0;
   outline: 0;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 130px;
   text-indent: -9999px;
   z-index: 9999;
 }
