@@ -6,24 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/pure-min.css" />
+     <link rel="stylesheet" href="css/jquery.flipster.min.css">
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/jquery.bxslider.css"/>
-  
+   
+    <link rel="stylesheet" href="css/jquery.bxslider.css" />
     <title>Photobooth</title>
-    
-        <style>
-	    .font_0 { font-family: "Roboto", sans-serif; }
-    	.font_1 { font-family: "FreeMono", monospace; }
+    <style>
+        .font_0 {
+            font-family: "Roboto", sans-serif;
+        }
+        
+        .font_1 {
+            font-family: "FreeMono", monospace;
+        }
     </style>
 </head>
 
 <body>
-
-	<div id='gallery'></div>
+    <div id="carousel">
+        <ul>
+          <!-- <div id="gallery"></div>-->
+            <li><img class="gallerysize" src="img/test_bilder/DSC_6965.jpg" /></li>
+            <li> <img class="gallerysize" src="img/test_bilder/DSC_6958.jpg" /> </li>
+            <li> <img class="gallerysize" src="img/test_bilder/DSC_6960.jpg" /> </li>
+            <li> <img class="gallerysize" src="img/test_bilder/DSC_6962.jpg" /> </li>
+        </ul>
+    </div>
     
+    
+    
+   <!--<div id='gallery'></div>--> 
     <script src="fabric/dist/fabric.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery.bxslider.js"></script>
-    <script src="js/gallery.js"></script>
+    <script src="/js/jquery.min.js"></script>
+        <script src="/js/jquery.flipster.min.js"></script>
+     <script src="js/gallery.js"></script>
+
+   <!-- <script src="js/jquery.bxslider.js"></script>-->
+   
 </body>
+
 </html>

@@ -260,6 +260,9 @@ input::-moz-focus-outer {
 /*#canvas{
      
 }*/
+.gallerysize{
+    width: 500px;
+}
 
 #canvas_image{
     padding:30px 25px 70px 25px;
