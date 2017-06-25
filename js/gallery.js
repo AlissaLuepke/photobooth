@@ -20,6 +20,7 @@ $.ajax({
 	      $.ajax({
 		  url: "/photos/"+message[x],
 		  method: "GET",
+		  dataType: "json",
 		  async: false	// die synchrone Ausführung sorgt hier dafür, dass die per Dateiname schon geordnete Reihenfolge erhalten bleibt
 	      
 	      }).done(function(message2) {
