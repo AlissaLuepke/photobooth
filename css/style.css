@@ -375,6 +375,15 @@ input {
     float: left;
 }
 
+.font_0 { font-family: "Gochihand", sans-serif; }
+.font_1 { font-family: "LABELLEAURORE", monospace; }
+.font_2 {  font-family: "ROCKSALT", monospace; }
+
+.time_year { background-color: #FF8F26; }
+.time_month { background-color: #FFA226; }
+.time_day { background-color: #FFBC26; }
+.time_hour { background-color: #FFDA26; }
+
 @media (min-width: 600px) {
     body {
         padding: 10px 0px;

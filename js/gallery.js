@@ -34,21 +34,21 @@ $.ajax({
 		if (+year > last_year ) {
 			last_year = +year;
 			last_month = 0;
-			appendTimeList( counter, year);
+			appendTimeList( counter, year, "time_year");
 		}
 		if (+month > last_month ) {
 			last_month = +month;
 			last_day = 0;
-			appendTimeList( counter, months[+month -1]);
+			appendTimeList( counter, months[+month -1], "time_month");
 		}
 		if (+day > last_day ) {
 			last_day = +day;
 			last_hour = 0;
-			appendTimeList( counter, day + ".");
+			appendTimeList( counter, day + ".", "time_day");
 		}
 		if (+hour > last_hour ) {
 			last_hour = +hour;
-			appendTimeList( counter, (+hour < 10 ? "0" + hour : hour) + ":00");
+			appendTimeList( counter, (+hour < 10 ? "0" + hour : hour) + ":00", "time_hour");
 		}
 
 	      	var temp = "<li class='gallery_image'>";
@@ -86,8 +86,8 @@ $.ajax({
 	  
 });
 
-function appendTimeList(id, text) {
-	$('#flat_list').append('<li><div class="galleryfoldersize" imageID=' + id +' > <p class="foldertext"> ' + text + ' </p></div></li>');
+function appendTimeList(id, text, type) {
+	$('#flat_list').append('<li><div class="galleryfoldersize ' + type + '" imageID=' + id +' > <p class="foldertext"> ' + text + ' </p></div></li>');
 }
 
 
