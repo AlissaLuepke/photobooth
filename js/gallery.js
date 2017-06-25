@@ -11,7 +11,8 @@ var months = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "O
 // AJAX Request --> Holen der Bilder
 $.ajax({
     url: "/dir",
-    method: "GET"
+    method: "GET",
+    dataType: "json"
     
 }).done(function(message){
 	  
@@ -20,7 +21,6 @@ $.ajax({
 	      $.ajax({
 		  url: "/photos/"+message[x],
 		  method: "GET",
-		  dataType: "json",
 		  async: false	// die synchrone Ausführung sorgt hier dafür, dass die per Dateiname schon geordnete Reihenfolge erhalten bleibt
 	      
 	      }).done(function(message2) {
