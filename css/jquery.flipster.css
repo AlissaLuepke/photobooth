@@ -40,6 +40,7 @@
 
 /* @group Flipster Previous & Next Buttons */
 .flipster__button {
+    
   position: absolute;
   top: 50%;
   display: block;
@@ -55,6 +56,7 @@
   margin: -1em 2em;
 }
 .flipster__button svg {
+    
   width: 2em;
   stroke: currentColor;
   fill: transparent;
@@ -63,6 +65,7 @@
 }
 .flipster__button:hover,
 .flipster__button:focus {
+    
   opacity: 1;
 }
 .flipster__button--prev {
