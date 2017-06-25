@@ -191,11 +191,37 @@ input::-moz-focus-outer {
     padding: 10px 25px;
     margin: 10px;
 }
+.ausloesebutton{
+     
+    cursor:pointer;
+    border:none;
+    height: 55px;
 
-#rectangle,
+}
+.gallerybutton{
+     
+    cursor:pointer;
+    border:none;
+    width: 100%;
+    margin: auto; 
+
+}
+
+
+#Clownsnase,
 #herz,
 #Kullerauge,
-#crown {
+#denkblase_blanco,
+#anker,
+#augenklappe,
+#denkblase_omg,
+#denkblase_wtf,
+#kussmund,
+#monokel,
+#zylinder,
+#sprechblase_blanco,
+#sprechblase_omg,
+#sprechblase_wtf{
     
     height: 100px;
 }
@@ -262,12 +288,16 @@ button {
 
 select,
 input {
-    min-width: 80%;
+    width: 50%;
+   
+}
+#timer{
+    margin: auto;
+}
+#capture {
+    text-align: center;
 }
 
-#capture {
-    text-align: right;
-}
 
 #gallery {
     background: lightgray;

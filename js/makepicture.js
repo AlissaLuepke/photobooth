@@ -2,6 +2,8 @@ var settings;
 var counter = 0;
 
 $('#shoot').click(function() {
+     $(".button").attr('src',"img/buttons/Ausloeser_Pressed_mitBlitz_new.svg");
+    
 	$.ajax({
 		method: "POST",
 		url: "http://raspberrypi:8000",
