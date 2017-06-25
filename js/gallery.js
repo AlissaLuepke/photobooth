@@ -1,9 +1,19 @@
-$("#carousel").flipster({
+var carousel = $("#carousel").flipster({
     style: 'carousel',
     spacing: -0.5,
-    nav: true,
+    nav: false,
     buttons: true,
-    loop: true
+    loop: true,
+    
+    start: 0
+});
+
+
+$("#flat").flipster({
+    style: 'flat',
+    spacing: -0.15,
+   
+    start: 0
 });
 // AJAX Request --> Holen der Bilder
 $.ajax({
@@ -27,5 +37,20 @@ $.ajax({
     
     
 });
+
+$('#0').click(function(){
+   
+    
+    carousel.flipster('jump', 0); // Jump to a specific index
+});
+
+
+$('#1').click(function(){
+   
+    
+    carousel.flipster('jump', 2); // Jump to a specific index
+});
+
+
 
 
