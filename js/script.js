@@ -1,3 +1,30 @@
+var stickers = [
+	"Anker",
+	"Augenklappe",
+	"Brille",
+	"Bunny",
+	"Clownsnase",
+	"Damenhut",
+	"Denkblase_blanco",
+	"Denkblase_OMG",
+	"Denkblase_WTF",
+	"Herzal",
+	"Krawatte",
+	"Kullerauge",
+	"Kussmund",
+	"Monokel",
+	"Narbe",
+	"Pfeife",
+	"Schleife",
+	"Schnurrbart_mitZahn",
+	"Schnurrbart",
+	"Sprechblase_blanco",
+	"Sprechblase_OMG",
+	"Sprechblase_WTF",
+	"Vollbart",
+	"Zylinder"
+];
+
 class FilterType {
     constructor(name, func) {
         this.name = name;
@@ -59,6 +86,18 @@ var canvas_image = fabric.Image.fromURL('capture.jpg', function (oImg) {
 });
 // Hinzufügen des bxSliders
 $(document).ready(function () {
+	/// STICKER
+	for ( var x in stickers) {
+		x = stickers[x];
+		$('.sliderSticker').append('<div class="slide"><img id="' + x + '"  alt="self-Logo" src="img/svg_sticker/' + x + '.svg"></div>');
+		$("#" + x).click(function () {
+		    fabric.loadSVGFromURL('img/svg_sticker/' + $(this).attr("id") + '.svg', function (objects, options) {
+			var obj = fabric.util.groupSVGElements(objects, options);
+			canvas.add(obj).renderAll();
+		    });
+		});
+	}
+
     $('.sliderSticker').bxSlider({
         slideWidth: 600
         , minSlides: 6
@@ -68,93 +107,7 @@ $(document).ready(function () {
     });
     $(window).resize();
 });
-/// STICKER
-$("#herz").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Herzal.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#Kullerauge").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Kullerauge.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#anker").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Anker.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#augenklappe").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Augenklappe.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#Clownsnase").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Clownsnase.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
 
-
-$("#denkblase_blanco").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Denkblase_blanco.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#denkblase_omg").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Denkblase_OMG.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#denkblase_wtf").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Denkblase_WTF.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#kussmund").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Kussmund.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#monokel").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Monokel.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#zylinder").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Zylinder.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#sprechblase_blanco").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Sprechblase_blanco.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#sprechblase_wtf").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Sprechblase_WTF.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
-$("#sprechblase_omg").click(function () {
-    fabric.loadSVGFromURL('img/svg_sticker/Sprechblase_OMG.svg', function (objects, options) {
-        var obj = fabric.util.groupSVGElements(objects, options);
-        canvas.add(obj).renderAll();
-    });
-});
 $("#target").click(function () {
     var selected = canvas.getActiveObject();
     canvas.remove(selected);
@@ -231,6 +184,29 @@ function changeFont() {
     });
     $('#font').addClass("font_" + $('#font').val());
 }
+
+$('#delete').click(function () {
+	canvas.getActiveObject().remove();
+});
+
+function onObjectSelected ( e ) {
+	$('#delete').attr("disabled", false);
+	$('#save').attr("disabled", true);
+	$('input').attr("disabled", true);
+	$('select').attr("disabled", true);
+	$('.filters').addClass("disabled");
+}
+function onObjectDeselected () {
+	$('#delete').attr("disabled", true);
+	$('#save').attr("disabled", false);
+	$('input').attr("disabled", false);
+	$('select').attr("disabled", false);
+	$('.filters').removeClass("disabled");
+}
+canvas.on('object:selected', onObjectSelected);
+canvas.on('selection:cleared', onObjectDeselected);
+
+
 document.addEventListener("DOMContentLoaded", function () {
     wait();
 });
