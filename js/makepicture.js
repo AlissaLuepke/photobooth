@@ -6,24 +6,24 @@ $('#shoot').click(function() {
     
 	$.ajax({
 		method: "POST",
-		url: "http://raspberrypi:8000",
+		url: "/",
 		data: $('#shootForm').serialize()
 	}).done( function (msg) {
-		location.href = "http://raspberrypi:8000/index.html";
+		location.href = "/index.html";
 	});
 });
 			
 $(document).ready(function () {
 	$.ajax({
 		method: "POST",
-		url: "http://raspberrypi:8000/settings"
+		url: "/settings"
 	}).done( function (msg) {
 		if (msg.status == "error") {
 			alert("Keine Kamera gefunden! Bitte Kamera anschließen und neu laden! <Durch Modal tauschen>");
 			$('#shoot').unbind().css("cursor","not-allowed");
 		} else {
 			setInterval(function () {
-				$('#preview').attr("src", "http://raspberrypi:8000/buffer" + "?" + counter);
+				$('#preview').attr("src", "/buffer" + "?" + counter);
 				counter = counter + 1;
 			}, 100);
 		}

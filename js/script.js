@@ -43,12 +43,23 @@ $(window).resize(function () {
     var imagewidth = $('#preview-container').width();
     $('#preview-container').height(imagewidth / 1.25);
     $('#preview-container').css('min-height', imagewidth / 1.25);
-    var canvas_size = $('#canvas_image').width();
+    var ratio =  (imagewidth - 50) / canvas.width;
     canvas.setWidth(imagewidth - 50);
     canvas.setHeight((imagewidth - 50) * 0.66);
-    var ratio = canvas.width / canvas.getObjects()[0].width;
-    canvas.getObjects()[0].scaleX = ratio;
-    canvas.getObjects()[0].scaleY = ratio;
+    for (var x in canvas.getObjects()) {
+    	if (x == 0) {
+	    	x = canvas.getObjects()[x];
+    		var imgSize = canvas.width / x.width;
+    		x.scaleX = imgSize;
+    		x.scaleY = imgSize;
+    		continue;
+    	}
+    	x = canvas.getObjects()[x];
+    	x.scaleX *= ratio;
+    	x.scaleY *= ratio;
+    	x.top *= ratio;
+    	x.left *= ratio;
+    }
     canvas.renderAll();
 });
 // Aufgenommenes Bild der Kamera wird dynamisch zum Canvas hinzugefügt
