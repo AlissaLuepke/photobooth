@@ -377,15 +377,16 @@ function takePicture(time, response ) {
 	setTimeout(function() {
 		
 		try {
-			ret = exec('echo "y" | gphoto2 --capture-image-and-download --filename=capture.jpg');
-			console.log("<< " + ret.toString());
+			exec('echo "y" | gphoto2 --capture-image-and-download --filename=capture.jpg');
 			
 			response.writeHead(200, {"Content-Type": "text/json"});
 			response.end('{"status":"ok"}');
 			
 		} catch (err) {
 			console.log("-!- Error: ", err);
-			ret = "error";
+			
+			response.writeHead(200, {"Content-Type": "text/json"});
+			response.end('{"status":"error"}');
 		}
 	}, time * 1000);
 }

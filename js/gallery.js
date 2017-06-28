@@ -40,7 +40,7 @@ $.ajax({
 		if (+month > last_month ) {
 			last_month = +month;
 			last_day = 0;
-			appendTimeList( counter, months[+month -1], "time_month");
+			appendTimeList( counter, months[+month ], "time_month");
 		}
 		if (+day > last_day ) {
 			last_day = +day;
@@ -49,13 +49,13 @@ $.ajax({
 		}
 		if (+hour > last_hour ) {
 			last_hour = +hour;
-			appendTimeList( counter, (+hour < 10 ? "0" + hour : hour) + ":00", "time_hour");
+			appendTimeList( counter, hour + ":00", "time_hour");
 		}
-
+		var text = message2.text == "" ? "." : message2.text;
 	      	var temp = "<li class='gallery_image'>";
 		temp += "<img class='gallerysize' src='"+decodeURIComponent(message2.img)+"'>";
-		temp += "<p class='font_" + message2.font + "'>" + decodeURIComponent(decodeURI(message2.text)) + "</p>";
-		temp += "<p class='date_text'>" + day + "." + month + "." + year + " " + hour + ":" + minute  + "</p>";
+		temp += "<p class='font_" + message2.font + "' " + (text == "." ? "style='color: white;'" : "") + ">" + decodeURIComponent(decodeURI(text)) + "</p>";
+		//temp += "<p class='date_text'>" + day + "." + month + "." + year + " " + hour + ":" + minute  + "</p>";
 		temp += "</li>";
 		$('#carousel_list').append(temp);
 		counter++;

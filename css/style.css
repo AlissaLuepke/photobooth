@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
 @font-face {
     font-family: 'josefine';
     src: url('../font/JosefinSans-Regular.ttf') format('truetype');
@@ -74,20 +79,34 @@ button:focus {
     border: 3px solid black;
 }
 
+.gallery_image {
+	background: white;
+	padding: 20px;
+	border: 1px solid #797979;
+	-webkit-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+	    -moz-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+	    box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+	text-align: center;
+}
+
+.flipster {
+	overflow-y: visible;
+	overflow-x: hidden;
+}
+
 .filters {
     background-color: #C8DCDE;
     padding: 20px;
     border: 1px solid #797979;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
-    box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
-    -webkit-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
-    -moz-box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.14);
-    box-shadow: 2px 2px 0px 0px rgba(50, 89, 92, 0.28);
+    margin: auto;
+    width: 95%;
+    -webkit-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+    -moz-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+    box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
 }
 
 .range-slider {
-    margin: 20px 0 0 0%;
+    //margin: 20px 0 0 0%;
 }
 
 .range-slider {
@@ -222,7 +241,7 @@ input::-moz-focus-outer {
 }
 
 .slide img {
-    height: 100px;
+    height: 200px;
 }
 
 #preview-container {
@@ -231,13 +250,13 @@ input::-moz-focus-outer {
     background-color: #C8DCDE;
     /*width: 30em;*/
     /*width: 614px;*/
-    width: 75%;
+    width: 95%;
     /*    height: 490px;*/
     /*height: 25em;*/
     text-align: center;
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
-    box-shadow: 2px 2px 5px 0px rgba(181, 181, 181, 1);
+    -webkit-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+    -moz-box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
+    box-shadow: 3px 3px 2px 0px rgba(181, 181, 181, 1);
 }
 
 #image-inside {
@@ -348,10 +367,11 @@ button {
     min-width: 10em;
 }
 
+/*
 select,
 input {
     width: 50%;
-}
+}*/
 
 #timer {
     margin: auto;
@@ -380,6 +400,15 @@ input {
 .time_month { background-color: #FFA226; }
 .time_day { background-color: #FFBC26; }
 .time_hour { background-color: #FFDA26; }
+
+input[type="text"], select {
+	width: 100%;
+}
+
+p {
+	-webkit-margin:-before: 0px;
+	-webkit-margin:-after: 0px;
+}
 
 @media (min-width: 600px) {
     body {

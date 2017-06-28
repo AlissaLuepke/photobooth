@@ -5,7 +5,7 @@ var stickers = [
 	"Bunny",
 	"Clownsnase",
 	"Damenhut",
-	"Denkblase_blanco",
+	//"Denkblase_blanco",
 	"Denkblase_OMG",
 	"Denkblase_WTF",
 	"Herzal",
@@ -18,7 +18,7 @@ var stickers = [
 	"Schleife",
 	"Schnurrbart_mitZahn",
 	"Schnurrbart",
-	"Sprechblase_blanco",
+	//"Sprechblase_blanco",
 	"Sprechblase_OMG",
 	"Sprechblase_WTF",
 	"Vollbart",
@@ -100,7 +100,7 @@ $(document).ready(function () {
 	/// STICKER
 	for ( var x in stickers) {
 		x = stickers[x];
-		$('.sliderSticker').append('<div class="slide"><img id="' + x + '"  alt="self-Logo" src="img/svg_sticker/' + x + '.svg"></div>');
+		$('.sliderSticker').append('<li class="slide"><img id="' + x + '"  alt="self-Logo" src="img/svg_sticker/' + x + '.svg"></li>'); //<div class="slide"></div>
 		$("#" + x).click(function () {
 		    fabric.loadSVGFromURL('img/svg_sticker/' + $(this).attr("id") + '.svg', function (objects, options) {
 			var obj = fabric.util.groupSVGElements(objects, options);
@@ -109,14 +109,13 @@ $(document).ready(function () {
 		});
 	}
 
-    $('.sliderSticker').bxSlider({
-        slideWidth: 600
-        , minSlides: 6
-        , maxSlides: 8
-        , slideMargin: 10
-        , pager: false
-    });
-    $(window).resize();
+	$('.sticker-container').flipster({
+	    	style: 'flat',
+		spacing: -0.15,
+		start: "center",
+		buttons: true
+	});
+	$(window).resize();
 });
 
 $("#target").click(function () {
@@ -136,7 +135,7 @@ $("#save").click(function () {
             , font: $('#font').val()
         }
     }).done(function (msg) {
-        alert("Image saved");
+        location.href = "/gallery.html";
     });
 });
 /// Filter Slider (Helligkeit, Kontrast etc.)

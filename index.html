@@ -5,16 +5,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/pure-min.css" />
+    <link rel="stylesheet" href="css/base-min.css" />
+    <link rel="stylesheet" href="css/grids-min.css" />
+    <link rel="stylesheet" href="css/grids-responsive-min.css" />
+    <link rel="stylesheet" href="css/jquery.flipster.min.css">
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/jquery.bxslider.css" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Photobooth</title>
 </head>
 
 <body>
     <div class="pure-g">
-        <div class="pure-u-5-8">
+    	<div class="pure-u-1" style="height: 24px;">
+		<a  href="main.html" data-tooltip="Zurück zur Hauptseite"> <div class="backbutton"> </div></a>
+    	</div>
+        <div class="pure-u-1 pure-u-lg-1-2">
             <div id='preview-container'>
                 <div id="canvas_image">
                     <canvas id="canvas"></canvas>
@@ -22,43 +27,46 @@
                 </div>
             </div>
         </div>
-        
-        
        
         
         
-        <div class="pure-u-3-8">
+        <div class="pure-u-1 pure-u-lg-1-2">
             <div class="filters">
-                <input type="text" id="text" placeholder="Subscription" />
+                <input type="text" id="text" placeholder="Subscription" maxlength="50" />
                 <select id='font'>
                     <option value=0 class="fontfield font_0">Gochihand</option>
                     <option value=1 class="fontfield font_1">LABELLEAURORE</option>
                     <option value=2 class="fontfield font_2">ROCKSALT</option>
                 </select>
-                <div class="range-slider">
-                    <p>Kontrast</p>
-                    <input class="range-slider__range" type="range" id="contrast" min="-255" max="255" data-filter="0" list="volsettings"> <span class="range-slider__value">0</span>
-                    <datalist id="volsettings">
-                        <option>0</option>
-                    </datalist>
-                </div>
-                <div class="range-slider">
-                    <p>Pixelate</p>
-                    <input class="range-slider__range" type="range" id="blocksize" min="1" max="16" data-filter="1" value="0"> <span class="range-slider__value">0</span> </div>
-                <div class="range-slider">
-                    <p>Sättigung</p>
-                    <input class="range-slider__range" type="range" id="saturate" min="-100" max="100" data-filter="2" list="volsettings"> <span class="range-slider__value"> 0</span>
-                    <datalist id="volsettings">
-                        <option>0</option>
-                    </datalist>
-                </div>
-                <div class="range-slider">
-                    <p>Helligkeit</p>
-                    <input class="range-slider__range" type="range" id="brightness" min="-255" max="255" data-filter="3" list="volsettings"> <span class="range-slider__value"> 0</span>
-                    <datalist id="volsettings">
-                        <option>0</option>
-                    </datalist>
-                </div>
+                <div class="pure-u-1-3 pure-u-lg-1">
+		        <div class="range-slider">
+		            <p style="-webkit-margin-after: 0px; -webkit-margin-before: 8px;">Kontrast</p>
+		            <input class="range-slider__range" type="range" id="contrast" min="-255" max="255" data-filter="0" list="volsettings"> <span class="range-slider__value">0</span>
+		            <datalist id="volsettings">
+		                <option>0</option>
+		            </datalist>
+		        </div>
+		        <div class="range-slider">
+		            <p style="-webkit-margin-after: 0px; -webkit-margin-before: 8px;">Pixelate</p>
+		            <input class="range-slider__range" type="range" id="blocksize" min="1" max="16" data-filter="1" value="0"> <span class="range-slider__value">0</span> </div>
+		    </div>
+		    <div class="pure-u-1-4 pure-u-lg-1"></div>
+		    <div class="pure-u-1-3 pure-u-lg-1">    
+		        <div class="range-slider">
+		            <p style="-webkit-margin-after: 0px; -webkit-margin-before: 0px;">Sättigung</p>
+		            <input class="range-slider__range" type="range" id="saturate" min="-100" max="100" data-filter="2" list="volsettings"> <span class="range-slider__value"> 0</span>
+		            <datalist id="volsettings">
+		                <option>0</option>
+		            </datalist>
+		        </div>
+		        <div class="range-slider">
+		            <p style="-webkit-margin-after: 0px; -webkit-margin-before: 8px;">Helligkeit</p>
+		            <input class="range-slider__range" type="range" id="brightness" min="-255" max="255" data-filter="3" list="volsettings"> <span class="range-slider__value"> 0</span>
+		            <datalist id="volsettings">
+		                <option>0</option>
+		            </datalist>
+		        </div>
+		    </div>
             </div>
             <button id="save" class="pure-button custombutxton">Save</button>
             <button id="delete" class="pure-button custombutxton" disabled=true>Delete</button>
@@ -66,28 +74,15 @@
     </div>
     <div class="pure-g">
         <div class="pure-u-5-5">
-            <div class="sliderSticker">
-            <!--
-                <div class="slide"><img id="herz" alt="self-Logo" src="img/svg_sticker/Herzal.svg"></div>
-                <div class="slide"><img id="Kullerauge" alt="self-Logo" src="img/svg_sticker/Kullerauge.svg"></div>
-                <div class="slide"><img id="anker" alt="self-Logo" src="img/svg_sticker/Anker.svg"></div>
-                <div class="slide"><img id="augenklappe" alt="self-Logo" src="img/svg_sticker/Augenklappe.svg"></div>
-                <div class="slide"><img id="Clownsnase" alt="self-Logo" src="img/svg_sticker/Clownsnase.svg"></div>
-                <div class="slide"><img id="denkblase_blanco" alt="self-Logo" src="img/svg_sticker/Denkblase_blanco.svg"></div>
-                <div class="slide"><img id="denkblase_omg" alt="self-Logo" src="img/svg_sticker/Denkblase_OMG.svg"></div>
-                <div class="slide"><img id="denkblase_wtf" alt="self-Logo" src="img/svg_sticker/Denkblase_WTF.svg"></div>
-                <div class="slide"><img id="kussmund" alt="self-Logo" src="img/svg_sticker/Kussmund.svg"></div>
-                <div class="slide"><img id="monokel" alt="self-Logo" src="img/svg_sticker/Monokel.svg"></div>
-                <div class="slide"><img id="zylinder" alt="self-Logo" src="img/svg_sticker/Zylinder.svg"></div>
-                <div class="slide"><img id="sprechblase_blanco" alt="self-Logo" src="img/svg_sticker/Sprechblase_blanco.svg"></div>
-                <div class="slide"><img id="sprechblase_omg" alt="self-Logo" src="img/svg_sticker/Sprechblase_OMG.svg"></div>
-                <div class="slide"><img id="sprechblase_wtf" alt="self-Logo" src="img/svg_sticker/Sprechblase_WTF.svg"></div>-->
-            </div>
+        	<div class="sticker-container">
+	            <ul class="sliderSticker"></ul>
+	        </div>
         </div>
     </div>
     <script src="fabric/dist/fabric.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery.bxslider.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.flipster.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 

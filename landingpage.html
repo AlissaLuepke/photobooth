@@ -11,32 +11,40 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Photobooth</title>
 </head>
-
+<body>
 
 
 <div class="bg"></div>
-<div class="flex-container" id = "flex-container">
+<div class="flex-container" id="flex-container">
 
-  <h1 id='titletext' style="letter-spacing: 50px">Photobooth</h1>
-  <p class="lead"></p>
-  <a href="main.html" class="button">Start</a>
+    <h1 id='titletext' style="letter-spacing: 50px">Photobooth</h1>
+    <p class="lead"></p>
+    <a href="main.html" class="button">Start</a>
+    <a class="Infobutton">Info</a>
+    <div class="infowindow-hidden">
+       <a  > <div class="closebutton"> </div></a>
+        <h2 class="infotext-header">Kamera einstellen:</h2>
+        <ul class="infotext">
+        <li>Große Blende: 5.6 - 11 </li>
+           <li>  Belichtungszeit über 1/125 und höher </li>
+           <li>  ISO 100 - 400 für draußen </li>
+           <li>  ISO 400 in Räumen oder höher </li>
+           </ul>
+         <p class="infotext-focus">Fokussiere eine Person, markiere den Standort und stelle die Kamera auf Manuellen Fokus ein</p>  
+           <p class="infotext-focus">Falls deine Kamera keinen manuellen Fokus hat, kannst du auch Automatisch fokusieren. Dabei kann es passieren, dass kein scharfes Bild aufgenommmen wird. Dann musst du den Vorgang wiederholen</p>   
+        
+    </div>
 </div>
-<body>
   
     <script src="fabric/dist/fabric.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery.bxslider.js"></script>
+    <script src="js/landingpage.js"></script>
     <script src="js/script.js"></script>
     
     <script>
     	$(document).ready(function () {
-    		var dist = 50;
-    		var interval = setInterval(function () {
-    			$('#titletext').css("letter-spacing", dist + "px");
-    			dist -= 1;
-    			if (dist == 0) clearInterval(interval);
-    		}, 100);
-    		
+		$('#titletext').css("transition", "letter-spacing 3s");
+		$('#titletext').css("letter-spacing", "0px");
     	});
     
     </script>
