@@ -31,6 +31,23 @@ class FilterType {
         this.func = func;
     }
 }
+
+function saveFunction ( ) {
+    var theText = encodeURIComponent($('#text').val());
+    console.log(theText);
+    $.ajax({
+        url: "/"
+        , method: "POST"
+        , data: {
+            save: canvas.toDataURL('png')
+            , text: theText
+            , font: $('#font').val()
+        }
+    }).done(function (msg) {
+        location.href = "/gallery.html";
+    });
+}
+
 // neues Canvas Element wurde erstellt 
 var canvas = new fabric.Canvas('canvas', {
     backgroundColor: 'rgb(239, 239, 239)'
@@ -123,21 +140,10 @@ $("#target").click(function () {
     canvas.remove(selected);
 });
 //Speichern des neuen Bildes
-$("#save").click(function () {
-    var theText = encodeURIComponent($('#text').val());
-    console.log(theText);
-    $.ajax({
-        url: "/"
-        , method: "POST"
-        , data: {
-            save: canvas.toDataURL('png')
-            , text: theText
-            , font: $('#font').val()
-        }
-    }).done(function (msg) {
-        location.href = "/gallery.html";
-    });
+$("#Upload").click(function () {
+	saveFunction();
 });
+
 /// Filter Slider (Helligkeit, Kontrast etc.)
 var rangeSlider = function () {
     var slider = $('.range-slider')
@@ -200,15 +206,31 @@ $('#delete').click(function () {
 });
 
 function onObjectSelected ( e ) {
-	$('#delete').attr("disabled", false);
-	$('#save').attr("disabled", true);
+	$('#delete').css("fill", "");
+	$('#Kreis ellipse').css("fill","");
+	$('#delete').unbind().click(function () {
+		canvas.getActiveObject().remove();
+	});
+	
+	$('#Upload path').css("fill","#797979");
+	$('#save').css("fill","#ababab");
+	$('#Upload').unbind();
+	
 	$('input').attr("disabled", true);
 	$('select').attr("disabled", true);
 	$('.filters').addClass("disabled");
 }
 function onObjectDeselected () {
-	$('#delete').attr("disabled", true);
-	$('#save').attr("disabled", false);
+	$('#delete').css("fill", "#797979");
+	$('#Kreis ellipse').css("fill","ababab");
+	$('#delete').unbind();
+	
+	$('#Upload path').css("fill","");
+	$('#save').css("fill","");
+	$("#Upload").unbind().click(function () {
+		saveFunction();
+	});
+	
 	$('input').attr("disabled", false);
 	$('select').attr("disabled", false);
 	$('.filters').removeClass("disabled");
@@ -219,6 +241,7 @@ canvas.on('selection:cleared', onObjectDeselected);
 
 document.addEventListener("DOMContentLoaded", function () {
     wait();
+    onObjectDeselected();
 });
 
 function wait() {

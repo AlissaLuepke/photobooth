@@ -8,7 +8,7 @@ $( '#shoot' ).mouseenter( function () {
 } );
 
 $('#shoot').click(function() {
-     $('#capture').val($('#capture').val() + 0.5;); 
+     $('#capture').val($('#capture').val() + 0.5); 
      var timer = setInterval(function () {
      	let time = $('#capture').val();
      	$('#capture').val((time - 0.1).toFixed(1));
